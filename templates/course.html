@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}<h2>Course List</h2>
+
+    {% csrf_token %}
+    <button><a href="{% url 'create' %}">Create Course</a></button>
+    <form action="{% url 'search' %}" method="GET">
+        <input name="title" type="text" placeholder="Search">
+    </form>
+    <form action="{% url 'date' %}" method="GET">
+        <button><input name="date1" type="date"><input name="date2" type="date">Datefilter</button>
+    </form>
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            {% for obj in object_list %}
+                <li>
+                    <a href="{% url 'detail' obj.id %}"><h2>{{ obj.title }}</h2></a>
+                    <a href="{% url 'update' obj.id %}"> Update Curse</a>
+                    <a href="{% url 'delete' obj.id %}"> Delete Curse</a>
+                </li>
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}

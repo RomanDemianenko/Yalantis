@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form>
+        {% csrf_token %}
+        {{ course.title }} is going from {{ course.start }} to {{ course.end }} and have {{ course.num_lectures }}
+        lectures
+    </form>
+{% endblock %}
+
